@@ -32,7 +32,7 @@ public class Main {
 		m=scn.nextBigInteger();
 		
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		for (int i = 0; i <m.intValue(); i++) {
+		for (int i = 0; i <m.intValue(); i++) {   //超过32位会报错
 			if (i==0) {
 				sumB1=b1;
 			}else {
