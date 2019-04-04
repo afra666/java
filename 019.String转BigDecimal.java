@@ -1,5 +1,5 @@
 /**
- * String转BigDecimal
+ * String转BigDecimal 只有不带空格的数字才能转
  */
 package p;
 import java.math.BigDecimal;
