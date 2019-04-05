@@ -1,12 +1,12 @@
-/**extends类的继承
+/**extends类的继承和无参数构造函数
  * 
  */
 package p;
 
-class paren{
+class Paren{
 	String firstname=null;
 	int id=6;
-	void setInfo(String a,int b){
+	Paren(String a,int b){ 					//无参数构造函数。名字等于类名区分大小写
 		firstname=a;
 		id=b;
 	}
@@ -14,33 +14,30 @@ class paren{
 		System.out.println("fristname="+firstname+"\n"+"id="+id);
 	}
 }
-class people1 extends paren{
+class people1 extends Paren{
 	people1() { 						//不能加void
-		super.setInfo("Alice",1);
+		super("Alice",2019);
 		super.getInfo();
 	}
 }
 
-class people2 extends paren{
+class people2 extends Paren{
 	people2() {
-		super.setInfo("Gory",2);
+		super("Gory",2020);
 		super.getInfo();
-		
 	}
 }
 
 public class TestClass {
 	public static void main(String[] args) {
-		new people1();
+		new people1();							//匿名引用
 		new people2();
 	}
 }
 /**输出
 fristname=Alice
-id=1
+id=2019
 fristname=Gory
-id=2
-
- * @author Administrator
+id=2020
  *
  */
