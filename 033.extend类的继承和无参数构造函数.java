@@ -1,4 +1,4 @@
-/**extends类的继承和无参数构造函数
+/**extends类的继承和构造函数
  * 
  */
 package p;
@@ -6,7 +6,7 @@ package p;
 class Paren{
 	String firstname=null;
 	int id=6;
-	Paren(String a,int b){ 					//无参数构造函数。名字等于类名区分大小写
+	Paren(String a,int b){ 					//构造函数。名字等于类名区分大小写
 		firstname=a;
 		id=b;
 	}
