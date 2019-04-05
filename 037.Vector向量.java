@@ -19,6 +19,9 @@ public class TestClass {
 	System.out.println(v);
 	v.setElementAt("four",4); 
 	System.out.println(v);
+	
+	System.out.println(v.get(0));
+	
 	v.removeAllElements(); 
 	System.out.println(v);
    }
@@ -32,5 +35,6 @@ public class TestClass {
 [zero, one, two, oop, three]
 [zero, one, two, three, three]
 [zero, one, two, three, four]
+zero
 []
  */	
