@@ -8,7 +8,7 @@ public class TestClass {
     }
 
     public static void main(String args[]) {
-        TestClass b = new TestClass();
+        new TestClass();
     }
 
 }
