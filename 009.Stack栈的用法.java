@@ -1,3 +1,31 @@
+/**
+ * Stack的入栈和出战
+ */
+package p;
+import java.util.Stack;
+
+public class TestClass2 {
+
+	public static void main(String args[]) {
+		Stack<String> stk=new Stack<String>();
+		stk.push("Java");
+		stk.push("C++");
+		stk.pop();
+		System.out.println(stk);
+		System.out.println(stk.elementAt(0));
+	}
+}
+/**
+[Java]
+Java
+*/
+
+
+
+
+
+
+
 package p;
 import java.util.Stack;
 public class Main {
