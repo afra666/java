@@ -1,4 +1,127 @@
+/**支持双类型
+ * 输出：
+2.0
+2.0
+ */
+package p3;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Stack;
+
+public class C3{
+	public static void main(String[] args) {
+		/**
+		 * 传入值：Stack<String> stkRPN栈，传出：bigdecimal ： RPNtoNum(stkRPN).bigResultOfStkIn;
+		 */
+		String []strArRPN= {"3","1.5","/"};
+		Stack<String> stkRPN=new Stack<String>();
+		for (int i = 0; i < strArRPN.length; i++) {//RPN最左边入栈低
+			stkRPN.push(strArRPN[i]);
+		}
+		BigDecimal resulBigNum=new RPNtoNum(stkRPN).bigResultOfStkIn;
+		System.out.println(resulBigNum.toString());
+
+		/**
+		 * 传入值：数组RPNStrIn{"3","1.5","/"};传出：bigdecimal ： RPNtoNum(stkRPN).bigResultOfStrArIn;
+		 */
+				String []strArRPN2= {"3","1.5","/"};
+				BigDecimal resulBigNum2=new RPNtoNum(strArRPN2).bigResultOfStrArIn;
+				System.out.println(resulBigNum2.toString());
+				
+
+
+	}
+}
+class RPNtoNum{
+
+
+	BigDecimal bigResultOfStkIn=new BigDecimal(0);
+	BigDecimal bigResultOfStrArIn=new BigDecimal(0);
+
+
+	public RPNtoNum(Stack<String> inStk) {//传入值Stack<String> StrStkIn，属性赋值BigDecimal bigResultOfStkIn;
+		Stack<BigDecimal> bigStkResult=new Stack<BigDecimal>();//存放最终结果栈bigStk
+		Stack<String> inStkReverse=new ReverseStk(inStk).value;//反向RPN栈
+		BigDecimal big1stPOP=new BigDecimal(0);//存入先弹
+		BigDecimal big2ndPOP=new BigDecimal(0);//存入后弹
+		while (!inStkReverse.isEmpty()) {
+			switch (inStkReverse.peek()) {
+			case "+":
+				inStkReverse.pop();
+				big1stPOP=bigStkResult.pop();
+				big2ndPOP=bigStkResult.pop();
+				bigStkResult.push(big2ndPOP.add(big1stPOP));
+				break;
+			case "-":
+				inStkReverse.pop();
+				big1stPOP=bigStkResult.pop();
+				big2ndPOP=bigStkResult.pop();
+				bigStkResult.push(big2ndPOP.subtract(big1stPOP));
+				break;
+			case "*":
+				inStkReverse.pop();
+				big1stPOP=bigStkResult.pop();
+				big2ndPOP=bigStkResult.pop();
+				bigStkResult.push(big2ndPOP.multiply(big1stPOP));
+				break;
+			case "/":
+				inStkReverse.pop();
+				big1stPOP=bigStkResult.pop();
+				big2ndPOP=bigStkResult.pop();
+				int n=Math.max(
+						(big1stPOP.stripTrailingZeros().scale()),
+						(big2ndPOP.stripTrailingZeros().scale())
+						);
+				bigStkResult.push(big2ndPOP.divide(big1stPOP,n,RoundingMode.HALF_UP));break;
+			default:bigStkResult.push(new BigDecimal(inStkReverse.pop()));break;
+			}
+
+
+		}
+		this.bigResultOfStkIn=bigStkResult.pop();//不能用peek，只能用pop(),否则会while循环
+
+
+
+	}
+	RPNtoNum(String []sAr){
+		Stack<String> stk=new StrArToStk().zeroEleOnBottom(sAr);
+		bigResultOfStrArIn=new RPNtoNum(stk).bigResultOfStkIn;
+	}
+	
+}
+class ReverseStk{//倒立栈
+		Stack<String> value=new Stack<String>();
+		public ReverseStk(Stack<String> strStkIn) {
+			int strStkSize=strStkIn.size();
+
+			for (int i = 0; i <strStkSize; i++) {
+				this.value.push(strStkIn.pop());
+			}
+
+		}
+	}
+class StrArToStk{//字符串转栈
+	Stack<String> zeroEleOnBottom(String []sAr) {
+		Stack<String> value=new Stack<String>();
+		for (int i = 0; i < sAr.length; i++) {
+			value.push(sAr[i]);
+		}
+		return value;
+	}
+	Stack<String> maxEleOnBottom(String []sAr) {
+		Stack<String> value=new Stack<String>();
+		for (int i =sAr.length-1; i>=0 ; i--) {
+			value.push(sAr[i]);
+		}
+		return value;
+	}
+}
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//支持单类型
 //输出：2.0
+
 package p3;
 
 import java.math.BigDecimal;
