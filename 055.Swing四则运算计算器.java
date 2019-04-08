@@ -1,39 +1,38 @@
 /**Swing GUI 四则运算计算器
-**
+**布局类型：MigLayout
 输入
 5 + ((1 + 2) * 4) - 3
 输出
 14
 */
-package p3;
+package p;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.security.acl.Group;
-import java.util.Stack;
-import java.util.StringTokenizer;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JRadioButton;
 
-public class Calc12 extends JFrame {
+
+
+public class CalcFrame extends JFrame {
 	String all_str_in;
 	private JPanel contentPane;
 	private JTextField tf1;
@@ -45,7 +44,7 @@ public class Calc12 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Calc12 frame = new Calc12();
+					CalcFrame frame = new CalcFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +61,7 @@ public class Calc12 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Calc12() {
+	public CalcFrame() {
 		setFont(new Font("Dialog", Font.PLAIN, 8));
 		setTitle("\u8BA1\u7B97\u5668");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -330,6 +329,7 @@ public class Calc12 extends JFrame {
 			contentPane.add(button_14, "cell 0 6,growx");
 			contentPane.add(button_15, "cell 0 6,growx");
 			contentPane.add(button_16, "cell 0 6,growx");
+			
 	}
 	
 }
