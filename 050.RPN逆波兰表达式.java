@@ -3,19 +3,19 @@
 512+4*+3-
 5 1 2 + 4 * + 3 - 
  */
-package p2;
+package p3;
 import java.util.Stack;
 import java.util.StringTokenizer;
-public class C1 {
+public class TestMain {
 	public static void main(String[] args) {
 		String []input=new MathFormat().valueOf("5 + ((1 + 2) * 4) - 3");
 		
 		/**
 		 * 
 		 */
-		String []outputAr=new RPN(input).outputAr;//字符串数组模式
-		for (int i = 0; i < outputAr.length; i++) {//这是数组不是栈，可以使用。length属性
-			System.out.print(outputAr[i]);
+		String []outputAr_zeroArIsbottom=new RPN(input).outputAr_zeroArIsbottom;//字符串数组模式
+		for (int i = 0; i < outputAr_zeroArIsbottom.length; i++) {//这是数组不是栈，可以使用。length属性
+			System.out.print(outputAr_zeroArIsbottom[i]);
 		}
 		System.out.println();
 		
@@ -23,7 +23,7 @@ public class C1 {
 		/**
 		 * 字符串加空格模式
 		 */
-		System.out.println(new RPN(input).outputStr);
+		System.out.println(new RPN(input).outputStrWithSpace);
 
 		
 		
@@ -31,10 +31,11 @@ public class C1 {
 	}
 }
 class RPN{
-	Stack<String> numStk=new Stack<String>();//堆栈（逆序）
+	Stack<String> numStkZeroOnBottom=new Stack<String>();//堆栈（逆序）
 	Stack<String> opStk=new Stack<String>();
-	String []outputAr;//正序
-	String outputStr;//正序
+	String []outputAr_zeroArIsbottom;//[0]=栈底元素
+	String outputStrWithSpace;//[0]=栈底元素+空格
+
 	
 	RPN(String []input){
 		for (int i = 0; i < input.length; i++) {
@@ -47,30 +48,30 @@ class RPN{
 			case ")":
 				while (!opStk.isEmpty()) {//处理右括号，一直pop到顶部为左括号为止
 					if (opStk.peek().equals("(")) {opStk.pop();break;}
-					else {numStk.push(opStk.pop());}
+					else {numStkZeroOnBottom.push(opStk.pop());}
 				}
 				break; 
-			default:numStk.push(input[i]);break; 
+			default:numStkZeroOnBottom.push(input[i]);break; 
 			}//switch
 		}
 		while (!opStk.isEmpty()) {
 			if (opStk.peek()=="(") {
 				opStk.pop();
 			}
-			numStk.push(opStk.pop());
+			numStkZeroOnBottom.push(opStk.pop());
 		}
-		int opStkSize=numStk.size();
-		outputAr=new String[numStk.size()];
-		for (int i =opStkSize-1; i>=0; i--) {
-			outputAr[i]=(numStk.pop());
+		int opStkSize=numStkZeroOnBottom.size();
+		outputAr_zeroArIsbottom=new String[numStkZeroOnBottom.size()];
+		for (int i =opStkSize-1; i>=0; i--) { //栈底放到数组0位置
+			outputAr_zeroArIsbottom[i]=(numStkZeroOnBottom.pop());
 			
 		}
-		for (int i = 0; i < outputAr.length; i++) {
+		for (int i = 0; i < outputAr_zeroArIsbottom.length; i++) {
 			if (i==0) {
-				outputStr=outputAr[i]+" ";
+				outputStrWithSpace=outputAr_zeroArIsbottom[i]+" ";
 			}
 			else {
-				outputStr=outputStr+outputAr[i]+" ";
+				outputStrWithSpace=outputStrWithSpace+outputAr_zeroArIsbottom[i]+" ";
 			}
 		}
 
@@ -81,12 +82,12 @@ class RPN{
 				opStk.push(inputi);
 			}
 			else if ((priJudge(opStk.peek())==1)) {
-				numStk.push(opStk.pop());
+				numStkZeroOnBottom.push(opStk.pop());
 				opStk.push(inputi);
 			}
 			else if ((priJudge(opStk.peek())==2)) {
 				while ((!(opStk.isEmpty()))) {
-					numStk.push(opStk.pop());
+					numStkZeroOnBottom.push(opStk.pop());
 				}
 				opStk.push(inputi);//容易丢
 			}
@@ -100,7 +101,7 @@ class RPN{
 				opStk.push(inputi);
 			}
 			else if (priJudge(opStk.peek())==2) {
-				numStk.push(opStk.pop());
+				numStkZeroOnBottom.push(opStk.pop());
 				opStk.push(inputi);
 			}
 
