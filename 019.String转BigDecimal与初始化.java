@@ -1,4 +1,12 @@
 /**
+初始化方法
+*/
+
+
+BigDecimal bigResult=new BigDecimal(0);
+
+
+/**
  * String转BigDecimal 只有不带空格的数字才能转
  */
 package p;
