@@ -1,5 +1,46 @@
 package p;
 
+
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+public class TestMain {
+	
+	public static void main(String args[]) {
+		// 1. 不需要参数,返回值为 5  
+		Function<Integer, Integer> f1=(x)->5;
+		  
+		// 2. 接收一个参数(数字类型),返回其2倍的值  
+		Function<Integer, Integer> f2=x -> 2 * x;
+		  
+		// 3. 接受2个参数(数字),并返回他们的差值  
+		BiFunction<Integer, Integer, Integer> f3=(x, y) ->x-y;
+		  
+		// 4. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  
+				Function<Integer,String> cs1=i->i.toString();
+				Function<Integer,String> cs2=i->"This is a word.";
+				
+		int x=3;
+		System.out.println(f1 .apply(x));
+		System.out.println(f2 .apply(x));
+		System.out.println(f3 .apply(x,2*x));
+		System.out.println(cs1.apply(x));
+		System.out.println(cs2.apply(x));
+    }
+
+}
+/**effect:
+ *output:
+5
+6
+-3
+3
+This is a word.
+
+ *end
+ */
+package p;
+
 import java.util.function.Function;
 
 public class TestMain {
