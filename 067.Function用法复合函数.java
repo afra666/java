@@ -25,3 +25,22 @@ compose vs andThen:f(g(x))=5.0,5.0
 
  *end
  */
+//用法2
+package p;
+
+
+import java.util.function.Function;
+
+public class TestMain {
+	public Double value(double d,Function<Double, Double> func) {
+		return func.apply(d);
+	}
+	public static void main(String[] args) {
+		System.out.println(new TestMain().value(15, x->x*x));
+	}
+}
+/**effect:
+ *output:
+225.0
+ *end
+ */
