@@ -4,16 +4,17 @@ import java.util.HashMap;
 
 public class TestMain {
     public static void main(String[] args) {
-       HashMap<String,Double> m=new HashMap<String,Double>();
-       m.put("good",1.01);
-       m.put("morning",3.86);//put(key不可重复，value可重复)
-       m.put("Alice",5.99);
+       HashMap<Double,String> m=new HashMap<Double,String>();
+       m.put(1.01,"good");
+       m.put(1.01,"morning");//put(key若重复则覆盖，value可重复)
+       m.put(5.99,"Alice");
        System.out.println(m);
-       System.out.println(m.get("Alice"));//get(key)
+       System.out.println(m.get(1.01));//get(key)
+      
     }
 }
 /**
  输出*
-{Alice=5.99, good=1.01, morning=3.86}
-5.99
+{1.01=morning, 5.99=Alice}
+morning
  */
