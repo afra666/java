@@ -1,3 +1,12 @@
+/**
+src
+ |------|
+ 	Main.java
+	myMap
+*/
+
+
+
 //main
 package p;
 
