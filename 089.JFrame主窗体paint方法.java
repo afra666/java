@@ -15,7 +15,9 @@ public class Shape extends JFrame{
 	}
 	@Override
 	public void paint(Graphics g) {
-		g.drawLine(60, 60, 80, 80);
+		
+		g.drawLine(100, 100, 200, 200);
+		g.drawRect(100, 100, 100, 100);
 	}
 	public static void main(String []args){
 		new Shape();
